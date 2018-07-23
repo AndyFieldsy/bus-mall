@@ -5,8 +5,9 @@
 'use strict';
 
 var imgs = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
-var imgObj = [];
 
+var imgObj = [];
+var imgObjRes = [];
 
 function ImageTracker(img, path) {
   this.name = img.split('.')[0];
@@ -19,6 +20,8 @@ function ImageTracker(img, path) {
 var objCreate = function() {
   for (var i = 0; i < imgs.length; i++) {
     imgObj.push(new ImageTracker(imgs[i], 'img/'+imgs[i]));
+    imgObjRes.push(new ImageTracker(imgs[i], 'img/'+imgs[i]));
+
   }
 };
 objCreate();
@@ -36,7 +39,7 @@ var inputImage1 = function () {
   r = rando();
   var image = document.createElement('img');
   // image.className = r;
-  image.src = imgObj[r].path;
+  image.src = imgObjRes[r].path;
   var src = document.getElementById('Image1');
   src.appendChild(image);
 };
@@ -45,7 +48,7 @@ var inputImage2 = function() {
   r2 = rando();
   var image2 = document.createElement('img');
   // image2.className = r2;
-  image2.src = imgObj[r2].path;
+  image2.src = imgObjRes[r2].path;
   var src = document.getElementById('Image2');
   src.appendChild(image2);
 };
@@ -54,7 +57,7 @@ var inputImage3 = function() {
   r3 = rando();
   var image3 = document.createElement('img');
   // image3.className = r3;
-  image3.src = imgObj[r3].path;
+  image3.src = imgObjRes[r3].path;
   var src = document.getElementById('Image3');
   src.appendChild(image3);
 };

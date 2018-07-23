@@ -9,7 +9,6 @@ div {
 img {
     position:relative;
     left:5%;
-    width:90%;
     display:inline-block;
     height:300px;
     width:300px;
@@ -31,5 +30,5 @@ img {
 
 #scores {
     display:inline-block;
-    
+
 }
