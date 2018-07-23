@@ -92,19 +92,38 @@ vote2Button.addEventListener('click', voted2);vote3Button.addEventListener('clic
 function voted() {
   imgObj[r].votes++;
   regen();
+  resetScores();
+  createScores();
 }
 function voted2() {
   imgObj[r2].votes++;
   regen();
+  resetScores();
+  createScores();
 }
 function voted3() {
   imgObj[r3].votes++;
   regen();
+  resetScores();
+  createScores();
 }
 
 // end voting mechanics
 
+// start score
 
+var createScores = function() {
+  for(var s=0; s < imgObj.length; s++) {
+    var crtScores = document.createElement('li');
+    crtScores.textContent = imgObj[s].name + ' total votes: ' + imgObj[s].votes;
+    var scores = document.getElementById('scores');
+    scores.appendChild(crtScores);
+  }
+};
+createScores();
+var resetScores = function () {
+  document.getElementById('scores').innerHTML=' ';
+};
 
 
 
