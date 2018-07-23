@@ -1,9 +1,26 @@
-img {
-    width:300px;
-    height:300px;
-}
-.Image1, .Image2, .Image3 {
-    height:300px;
-    width:300px;
+
+div {
     display:inline-block;
+}
+img {
+    position:relative;
+    left:5%;
+    width:90%;
+    display:inline-block;
+    height:300px;
+    width:300px;
+}
+#vote1, #vote2, #vote3 {
+    position:relative;
+    display: inline-block;
+    left:5%;
+}
+#vote1 {
+    left:150px;
+}
+#vote2 {
+    left:375px;
+}
+#vote3 {
+    left:600px;
 }
