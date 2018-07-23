@@ -1,3 +1,7 @@
+*{
+    outline:dotted 1px red;
+}
+
 
 div {
     display:inline-block;

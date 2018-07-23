@@ -28,29 +28,32 @@ var rando = function() {
 };
 
 //start of image generation
+var r = 0;
+var r2 = 0;
+var r3 = 0;
 
 var inputImage1 = function () {
-  rando();
-  var r = rando();
+  r = rando();
   var image = document.createElement('img');
+  // image.className = r;
   image.src = imgObj[r].path;
   var src = document.getElementById('Image1');
   src.appendChild(image);
 };
 
 var inputImage2 = function() {
-  rando();
-  var r2 = rando();
+  r2 = rando();
   var image2 = document.createElement('img');
+  // image2.className = r2;
   image2.src = imgObj[r2].path;
   var src = document.getElementById('Image2');
   src.appendChild(image2);
 };
 
 var inputImage3 = function() {
-  rando();
-  var r3 = rando();
+  r3 = rando();
   var image3 = document.createElement('img');
+  // image3.className = r3;
   image3.src = imgObj[r3].path;
   var src = document.getElementById('Image3');
   src.appendChild(image3);
@@ -78,8 +81,28 @@ imageGenButton.addEventListener('click', regen);
 
 // end image generation
 
+//start voting mechanics
+var vote1Button = document.getElementById('vote1');
+var vote2Button = document.getElementById('vote2');
+var vote3Button = document.getElementById('vote3');
 
+vote1Button.addEventListener('click', voted);
+vote2Button.addEventListener('click', voted2);vote3Button.addEventListener('click', voted3);
 
+function voted() {
+  imgObj[r].votes++;
+  regen();
+}
+function voted2() {
+  imgObj[r2].votes++;
+  regen();
+}
+function voted3() {
+  imgObj[r3].votes++;
+  regen();
+}
+
+// end voting mechanics
 
 
 
