@@ -7,6 +7,7 @@
 var imgs = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
 
 var imgObj = [];
+var totalVotes = 0;
 
 function ImageTracker(img, path) {
   this.name = img.split('.')[0];
@@ -41,41 +42,44 @@ var inputImage1 = function () {
   while(r === nodup || r === nodup2 || r === nodup3){
     r = rando();
   }
+  console.log(r,nodup);
+  nodup = r;
   var image = document.createElement('img');
   // image.className = r;
   image.src = imgObj[r].path;
   var src = document.getElementById('Image1');
   src.appendChild(image);
   imgObj[r].views++;
-  nodup = r;
 };
 
 var inputImage2 = function() {
   r2 = rando();
-  while(r2 === r){
+  while(r2 === r || r2 === nodup || r2 === nodup2 || r2 === nodup3){
     r2 = rando();
   }
+  console.log(r2,nodup2);
+  nodup2 = r2;
   var image2 = document.createElement('img');
   // image2.className = r2;
   image2.src = imgObj[r2].path;
   var src = document.getElementById('Image2');
   src.appendChild(image2);
   imgObj[r2].views++;
-  nodup2 = r2;
 };
 
 var inputImage3 = function() {
   r3 = rando();
-  while(r3 === r || r3 === r2){
+  while(r3 === r || r3 === r2 || r3 === nodup || r3 === nodup2 || r3 === nodup3){
     r3 = rando();
   }
+  console.log(r3,nodup3);
+  nodup3 = r3;
   var image3 = document.createElement('img');
   // image3.className = r3;
   image3.src = imgObj[r3].path;
   var src = document.getElementById('Image3');
   src.appendChild(image3);
   imgObj[r3].views++;
-  nodup3 = r3;
 };
 
 inputImage1();
@@ -114,18 +118,21 @@ function voted() {
   regen();
   resetScores();
   createScores();
+  totalVotes++;
 }
 function voted2() {
   imgObj[r2].votes++;
   regen();
   resetScores();
   createScores();
+  totalVotes++;
 }
 function voted3() {
   imgObj[r3].votes++;
   regen();
   resetScores();
   createScores();
+  totalVotes++;
 }
 
 // end voting mechanics
@@ -145,7 +152,9 @@ var resetScores = function () {
   document.getElementById('scores').innerHTML=' ';
 };
 
-
+if(totalVotes >= 25) {
+  
+}
 
 
 
