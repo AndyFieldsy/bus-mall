@@ -165,6 +165,9 @@ var resetScores = function () {
   document.getElementById('scores').innerHTML=' ';
   if(totalVotes > 24) {
     console.log('25 Reached');
+    voteDatas();
+    nameDatas();
+    createChart();
     alert('You\'ve reached 25 votes! That is all that is required, but you may continue if you want.');
   }
   if(totalVotes > 50) {
@@ -196,9 +199,101 @@ var resetViews = function() {
   document.getElementById('views').innerHTML=' ';
 };
 
+//end views
 
 
+//start attempt at chartjs
 
+var voteData = [];
+var voteDatas = function() {
+  for(var v = 0; v < imgObj.length; v++) {
+    var voteDatap = imgObj[v].votes;
+    voteData.push(voteDatap);
+  }
+};
+
+var labelData = [];
+var nameDatas = function() {
+  for(var n = 0; n < imgObj.length; n++) {
+    var nameData = imgObj[n].name;
+    labelData.push(nameData);
+  }
+};
+
+
+// if(totalVotes > 24) {
+console.log('is this running?');
+
+var ctx = document.getElementById('myChart');
+
+function createChart() {
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labelData,
+      datasets: [{
+        label: '# of Votes',
+        data: voteData,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
+}
 
 
 
