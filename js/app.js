@@ -7,7 +7,6 @@
 var imgs = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
 
 var imgObj = [];
-var imgObjRes = [];
 
 function ImageTracker(img, path) {
   this.name = img.split('.')[0];
@@ -15,13 +14,12 @@ function ImageTracker(img, path) {
   // this.name.toString();
   this.path = path;
   this.votes = 0;
+  this.views = 0;
 }
 
 var objCreate = function() {
   for (var i = 0; i < imgs.length; i++) {
     imgObj.push(new ImageTracker(imgs[i], 'img/'+imgs[i]));
-    imgObjRes.push(new ImageTracker(imgs[i], 'img/'+imgs[i]));
-
   }
 };
 objCreate();
@@ -34,32 +32,50 @@ var rando = function() {
 var r = 0;
 var r2 = 0;
 var r3 = 0;
+var nodup = -1;
+var nodup2 = -1;
+var nodup3 = -1;
 
 var inputImage1 = function () {
   r = rando();
+  while(r === nodup || r === nodup2 || r === nodup3){
+    r = rando();
+  }
   var image = document.createElement('img');
   // image.className = r;
-  image.src = imgObjRes[r].path;
+  image.src = imgObj[r].path;
   var src = document.getElementById('Image1');
   src.appendChild(image);
+  imgObj[r].views++;
+  nodup = r;
 };
 
 var inputImage2 = function() {
   r2 = rando();
+  while(r2 === r){
+    r2 = rando();
+  }
   var image2 = document.createElement('img');
   // image2.className = r2;
-  image2.src = imgObjRes[r2].path;
+  image2.src = imgObj[r2].path;
   var src = document.getElementById('Image2');
   src.appendChild(image2);
+  imgObj[r2].views++;
+  nodup2 = r2;
 };
 
 var inputImage3 = function() {
   r3 = rando();
+  while(r3 === r || r3 === r2){
+    r3 = rando();
+  }
   var image3 = document.createElement('img');
   // image3.className = r3;
-  image3.src = imgObjRes[r3].path;
+  image3.src = imgObj[r3].path;
   var src = document.getElementById('Image3');
   src.appendChild(image3);
+  imgObj[r3].views++;
+  nodup3 = r3;
 };
 
 inputImage1();
@@ -90,7 +106,8 @@ var vote2Button = document.getElementById('vote2');
 var vote3Button = document.getElementById('vote3');
 
 vote1Button.addEventListener('click', voted);
-vote2Button.addEventListener('click', voted2);vote3Button.addEventListener('click', voted3);
+vote2Button.addEventListener('click', voted2);
+vote3Button.addEventListener('click', voted3);
 
 function voted() {
   imgObj[r].votes++;
