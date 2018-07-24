@@ -43,7 +43,6 @@ var inputImage1 = function () {
     r = rando();
   }
   console.log(r,nodup);
-  nodup = r;
   var image = document.createElement('img');
   // image.className = r;
   image.src = imgObj[r].path;
@@ -57,8 +56,7 @@ var inputImage2 = function() {
   while(r2 === r || r2 === nodup || r2 === nodup2 || r2 === nodup3){
     r2 = rando();
   }
-  console.log(r2,nodup2);
-  nodup2 = r2;
+  console.log('r:'+r,'nodup:'+nodup,'r2:'+r2,'nodup2:'+nodup2);
   var image2 = document.createElement('img');
   // image2.className = r2;
   image2.src = imgObj[r2].path;
@@ -72,7 +70,8 @@ var inputImage3 = function() {
   while(r3 === r || r3 === r2 || r3 === nodup || r3 === nodup2 || r3 === nodup3){
     r3 = rando();
   }
-  console.log(r3,nodup3);
+  nodup = r;
+  nodup2 = r2;
   nodup3 = r3;
   var image3 = document.createElement('img');
   // image3.className = r3;
@@ -80,6 +79,7 @@ var inputImage3 = function() {
   var src = document.getElementById('Image3');
   src.appendChild(image3);
   imgObj[r3].views++;
+  console.log('r:'+r,'nodup:'+nodup,'r2:'+r2,'nodup2:'+nodup2,'r3:'+r3,'nodup3:'+nodup3);
 };
 
 inputImage1();
@@ -105,6 +105,7 @@ imageGenButton.addEventListener('click', regen);
 // end image generation
 
 //start voting mechanics
+
 var vote1Button = document.getElementById('vote1');
 var vote2Button = document.getElementById('vote2');
 var vote3Button = document.getElementById('vote3');
@@ -153,7 +154,7 @@ var resetScores = function () {
 };
 
 if(totalVotes >= 25) {
-  
+
 }
 
 
