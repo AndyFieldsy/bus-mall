@@ -30,9 +30,13 @@ var rando = function() {
 };
 
 //start of image generation
+//values to call from img index
 var r = 0;
 var r2 = 0;
 var r3 = 0;
+
+//values will be set after image generation on initial page load
+//values will be compared with r value to make sure no duplicates
 var nodup = -1;
 var nodup2 = -1;
 var nodup3 = -1;
@@ -42,9 +46,9 @@ var inputImage1 = function () {
   while(r === nodup || r === nodup2 || r === nodup3){
     r = rando();
   }
-  console.log(r,nodup);
+  console.log(r,nodup); // initially had a problem. put logs in to find and fix.
   var image = document.createElement('img');
-  // image.className = r;
+  // image.className = r; no
   image.src = imgObj[r].path;
   var src = document.getElementById('Image1');
   src.appendChild(image);
@@ -56,9 +60,9 @@ var inputImage2 = function() {
   while(r2 === r || r2 === nodup || r2 === nodup2 || r2 === nodup3){
     r2 = rando();
   }
-  console.log('r:'+r,'nodup:'+nodup,'r2:'+r2,'nodup2:'+nodup2);
+  console.log('r:'+r,'nodup:'+nodup,'r2:'+r2,'nodup2:'+nodup2); // initially had a problem. put logs in to find and fix.
   var image2 = document.createElement('img');
-  // image2.className = r2;
+  // image2.className = r2; bad idea
   image2.src = imgObj[r2].path;
   var src = document.getElementById('Image2');
   src.appendChild(image2);
@@ -74,12 +78,12 @@ var inputImage3 = function() {
   nodup2 = r2;
   nodup3 = r3;
   var image3 = document.createElement('img');
-  // image3.className = r3;
+  // image3.className = r3; bad andy
   image3.src = imgObj[r3].path;
   var src = document.getElementById('Image3');
   src.appendChild(image3);
   imgObj[r3].views++;
-  console.log('r:'+r,'nodup:'+nodup,'r2:'+r2,'nodup2:'+nodup2,'r3:'+r3,'nodup3:'+nodup3);
+  console.log('r:'+r,'nodup:'+nodup,'r2:'+r2,'nodup2:'+nodup2,'r3:'+r3,'nodup3:'+nodup3); // initially had a problem. put logs in to find and fix.
 };
 
 inputImage1();
@@ -154,7 +158,9 @@ var createScores = function() {
     scores.appendChild(crtScores);
   }
 };
-createScores();
+createScores(); //run once to create initial scores
+
+//clears HTML so we can recreate with new values
 var resetScores = function () {
   document.getElementById('scores').innerHTML=' ';
   if(totalVotes > 24) {
@@ -183,7 +189,9 @@ var createViews = function() {
     views.appendChild(crtViews);
   }
 };
-createViews();
+createViews(); //run once to create initial views
+
+//clears HTML so we can recreate with new values
 var resetViews = function() {
   document.getElementById('views').innerHTML=' ';
 };

@@ -5,9 +5,11 @@
 
 div {
     display:inline-block;
+    width:30%;
+    left:5%;
 }
 img {
-    position:relative;
+    position:center;
     left:5%;
     display:inline-block;
     height:300px;
@@ -19,13 +21,13 @@ img {
     left:5%;
 }
 #vote1 {
-    left:150px;
+    left:15%;
 }
 #vote2 {
-    left:375px;
+    left:37.5%;
 }
 #vote3 {
-    left:600px;
+    left:60%;
 }
 
 #scores {
@@ -36,6 +38,8 @@ img {
     display:inline-block;
 }
 
-section {
-    border: 2px solid blue;
+.imageSelection {
+    border: 5px solid blue;
+    width:90%;
+    left:5%;
 }
