@@ -32,6 +32,9 @@ img {
     display:inline-block;
 
 }
+#views {
+    display:inline-block;
+}
 
 section {
     border: 2px solid blue;

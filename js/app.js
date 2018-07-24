@@ -119,6 +119,8 @@ function voted() {
   regen();
   resetScores();
   createScores();
+  resetViews();
+  createViews();
   totalVotes++;
 }
 function voted2() {
@@ -126,6 +128,8 @@ function voted2() {
   regen();
   resetScores();
   createScores();
+  resetViews();
+  createViews();
   totalVotes++;
 }
 function voted3() {
@@ -133,12 +137,14 @@ function voted3() {
   regen();
   resetScores();
   createScores();
+  resetViews();
+  createViews();
   totalVotes++;
 }
 
 // end voting mechanics
 
-// start score
+// start score - alerts at 25 total votes
 
 var createScores = function() {
   for(var s=0; s < imgObj.length; s++) {
@@ -151,14 +157,36 @@ var createScores = function() {
 createScores();
 var resetScores = function () {
   document.getElementById('scores').innerHTML=' ';
+  if(totalVotes > 24) {
+    console.log('25 Reached');
+    alert('You\'ve reached 25 votes! That is all that is required, but you may continue if you want.');
+  }
+  if(totalVotes > 50) {
+    console.log('50 votes... but why?');
+    alert('Okay. That\'s 50... why though?');
+  }
+  if(totalVotes > 75) {
+    console.log('75...');
+    alert('please stop!');
+  }
 };
 
-if(totalVotes >= 25) {
+// end scoring
 
-}
+// creates list of total views
 
-
-
+var createViews = function() {
+  for(var s=0; s < imgObj.length; s++) {
+    var crtViews = document.createElement('li');
+    crtViews.textContent = imgObj[s].name + ' total votes: ' + imgObj[s].views;
+    var views = document.getElementById('views');
+    views.appendChild(crtViews);
+  }
+};
+createViews();
+var resetViews = function() {
+  document.getElementById('views').innerHTML=' ';
+};
 
 
 
