@@ -163,7 +163,7 @@ createScores(); //run once to create initial scores
 //clears HTML so we can recreate with new values
 var resetScores = function () {
   document.getElementById('scores').innerHTML=' ';
-  if(totalVotes > 24) {
+  if(totalVotes >= 24) {
     console.log('25 Reached');
     voteDatas();
     nameDatas();
