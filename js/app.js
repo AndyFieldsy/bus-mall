@@ -3,6 +3,44 @@
 //lab 11 busmall start
 // ids: Image1 Image2 Image3 imageSelection imageGen
 'use strict';
+var voteData2 = [];
+var lastArray = [];
+
+// start of data storage
+
+
+// var stringifyData = JSON.stringify(imgObj.votes);
+// var parseData = JSON.parse(imgObj.votes);
+// var retrieveData = localStorage.getitem('data',voteData);
+// var retrieveData = JSON.
+if(localStorage.voteData) {
+  voteData2 = JSON.parse(localStorage.getItem('voteData'));
+  localStorage.clear();
+  console.log('canuhearme');
+}
+
+
+function stringifyData() {
+  localStorage.setItem('voteData',JSON.stringify(voteData));
+}
+function addArray() {
+  for(var z = 0; z < imgs.length; z++) {
+    var push = voteData2[z] + voteData[z];
+    lastArray.push(push);
+  }
+  if(lastArray.reduce((a,b)=>a+b,0) > 26) {
+    voteData = lastArray;
+  }
+}
+
+function deleteButtons() {
+  vote1Button.removeEventListener('click', voted);
+  vote2Button.removeEventListener('click', voted2);vote3Button.removeEventListener('click', voted3);
+}
+// end of data storage
+
+
+
 
 var imgs = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
 
@@ -29,6 +67,10 @@ var rando = function() {
   return Math.floor(Math.random() * (imgs.length - 0) + 0);
 };
 
+
+
+
+
 //start of image generation
 //values to call from img index
 var r = 0;
@@ -46,7 +88,7 @@ var inputImage1 = function () {
   while(r === nodup || r === nodup2 || r === nodup3){
     r = rando();
   }
-  console.log(r,nodup); // initially had a problem. put logs in to find and fix.
+  // console.log(r,nodup); // initially had a problem. put logs in to find and fix.
   var image = document.createElement('img');
   // image.className = r; no
   image.src = imgObj[r].path;
@@ -60,7 +102,7 @@ var inputImage2 = function() {
   while(r2 === r || r2 === nodup || r2 === nodup2 || r2 === nodup3){
     r2 = rando();
   }
-  console.log('r:'+r,'nodup:'+nodup,'r2:'+r2,'nodup2:'+nodup2); // initially had a problem. put logs in to find and fix.
+  // console.log('r:'+r,'nodup:'+nodup,'r2:'+r2,'nodup2:'+nodup2); // initially had a problem. put logs in to find and fix.
   var image2 = document.createElement('img');
   // image2.className = r2; bad idea
   image2.src = imgObj[r2].path;
@@ -83,7 +125,7 @@ var inputImage3 = function() {
   var src = document.getElementById('Image3');
   src.appendChild(image3);
   imgObj[r3].views++;
-  console.log('r:'+r,'nodup:'+nodup,'r2:'+r2,'nodup2:'+nodup2,'r3:'+r3,'nodup3:'+nodup3); // initially had a problem. put logs in to find and fix.
+  // console.log('r:'+r,'nodup:'+nodup,'r2:'+r2,'nodup2:'+nodup2,'r3:'+r3,'nodup3:'+nodup3); // initially had a problem. put logs in to find and fix.
 };
 
 inputImage1();
@@ -163,12 +205,15 @@ createScores(); //run once to create initial scores
 //clears HTML so we can recreate with new values
 var resetScores = function () {
   document.getElementById('scores').innerHTML=' ';
-  if(totalVotes >= 24) {
+  if(totalVotes === 25) {
     console.log('25 Reached');
     voteDatas();
     nameDatas();
+    addArray();
     createChart();
-    alert('You\'ve reached 25 votes! That is all that is required, but you may continue if you want.');
+    deleteButtons();
+    stringifyData();
+    alert('You\'ve reached 25 votes! Please do not vote any more. You will break this website, it is very fragile.');
   }
   if(totalVotes > 50) {
     console.log('50 votes... but why?');
@@ -181,6 +226,7 @@ var resetScores = function () {
 };
 
 // end scoring
+
 
 // creates list of total views
 
@@ -295,6 +341,7 @@ function createChart() {
   });
 }
 
+// pushing end voting data to array for local
 
 
 
