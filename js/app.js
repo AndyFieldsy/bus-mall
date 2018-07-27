@@ -233,7 +233,7 @@ var resetScores = function () {
 var createViews = function() {
   for(var s=0; s < imgObj.length; s++) {
     var crtViews = document.createElement('li');
-    crtViews.textContent = imgObj[s].name + ' total votes: ' + imgObj[s].views;
+    crtViews.textContent = imgObj[s].name + ' total views: ' + imgObj[s].views;
     var views = document.getElementById('views');
     views.appendChild(crtViews);
   }
