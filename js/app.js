@@ -23,6 +23,7 @@ if(localStorage.voteData) {
 function stringifyData() {
   localStorage.setItem('voteData',JSON.stringify(voteData));
 }
+
 function addArray() {
   for(var z = 0; z < imgs.length; z++) {
     var push = voteData2[z] + voteData[z];
@@ -38,6 +39,7 @@ function deleteButtons() {
   vote2Button.removeEventListener('click', voted2);vote3Button.removeEventListener('click', voted3);
 }
 // end of data storage
+
 
 
 
@@ -61,6 +63,7 @@ var objCreate = function() {
     imgObj.push(new ImageTracker(imgs[i], 'img/'+imgs[i]));
   }
 };
+
 objCreate();
 
 var rando = function() {
